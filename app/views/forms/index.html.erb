@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Forms</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @forms.each do |form| %>
+      <tr>
+        <td><%= form.name %></td>
+        <td><%= link_to 'Show', form %></td>
+        <td><%= link_to 'Edit', edit_form_path(form) %></td>
+        <td><%= link_to 'Destroy', form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <%#= link_to 'Send', 'javascript:void(0)', onclick: "showPopup(this,#{form.id});", 'data-bs-toggle' => "modal", 'data-bs-target'=>"#exampleModal"%>
+        <td><%= link_to 'Send', 'javascript:void(0)', onclick: "showPopup(this,#{form.id});"%></td>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Form', new_form_path %>
+
+
+<%= render 'form_popup' %>
+
+<script>
+  function showPopup(elemnt, form_id){
+    $("#exampleModal").find(".formm_id").val(form_id);
+    $("#exampleModal").modal('show');
+  }
+</script>

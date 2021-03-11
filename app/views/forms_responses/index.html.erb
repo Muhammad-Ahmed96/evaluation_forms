@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Feedback</h1>
+
+<table class="table">
+  <thead class="bg-dark text-white">
+    <tr>
+      <th>Form</th>
+      <th>Employee</th>
+      <th>Supervisor</th>
+      <th>External reviewer</th>
+      <th>Password</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @forms_responses.each do |forms_response| %>
+      <tr>
+        <td><%= forms_response.form.name %></td>
+        <td><%= forms_response.employee.email %></td>
+        <td><%= forms_response.supervisor.email %></td>
+        <td><%= forms_response.external_reviewer.email %></td>
+        <td><%= forms_response.password %></td>
+        <td><%= link_to 'Show', forms_response %></td>
+        <td><%= link_to 'Destroy', forms_response, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

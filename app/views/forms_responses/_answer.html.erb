@@ -1,0 +1,28 @@
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Answer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% question = answer.question %>
+    <% case question.question_type %>
+    <% when 'Text' %>
+      <% anss = answer.value%>
+    <% when 'Checkbox' %>
+      <% if answer.value.present? %>
+        <% ans = JSON.parse(answer.value).map(&:to_i) %>
+        <% options = question.options.select{|x| x.id.in? ans } %>
+        <%= anss = options.collect(&:label).join(', ') %>
+      <%end%>
+    <%end%>
+    <tr>
+      <td><%= question.label %></td>
+      <td></td>
+    </td>
+  </tbody>
+</table>
+
+  

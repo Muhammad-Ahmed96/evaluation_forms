@@ -1,0 +1,4 @@
+
+<%= f.fields_for :answers, f.object.answers do |answer|%>
+  <%= render 'answer_fields', answer: answer%>
+<%end%>

@@ -1,0 +1,42 @@
+<%= form_with(model: forms_response) do |form| %>
+  <% if forms_response.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(forms_response.errors.count, "error") %> prohibited this forms_response from being saved:</h2>
+
+      <ul>
+        <% forms_response.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :form_id %>
+    <%= form.number_field :form_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :employee_id %>
+    <%= form.number_field :employee_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :supervisor_id %>
+    <%= form.number_field :supervisor_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :external_reviewer_id %>
+    <%= form.number_field :external_reviewer_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.number_field :password %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

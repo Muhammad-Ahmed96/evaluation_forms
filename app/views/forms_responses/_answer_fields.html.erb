@@ -1,0 +1,26 @@
+<%question = answer.object.question%>
+<div>
+  <%=answer.hidden_field :question_id %>
+  <% case question.question_type %>
+  <% when 'Text'%>
+    <label><%= question.label%></label>
+    <%= answer.text_field :value, class:'form-control'%>
+  <% when 'Checkbox' %>
+    <div class="col-sm-12 no-padding">
+      <div class="col-sm-3">
+        <label>
+          <%= question.label %>
+        </label>
+      </div>
+      <div class="col-sm-9 parent-field">
+        <% selected = answer.object.persisted? ? answer.object.value.present? ? JSON.parse(answer.object.value) : nil : question.options.select(&:selected).collect(&:id) %>
+        <%= answer.collection_check_boxes(:value, question.options.sort_by{ |x| x.created_at}, :id, :label, checked: selected, :item_wrapper_class => 'col-sm-3 col-xs-6 no-padding' ) do |b| %>
+          <div class="col-sm-12 no-padding d-flex">
+            <%= b.check_box(class: "no-margin") %>
+            <%= b.label(style: "margin-top:-5px;") %>
+          </div>
+        <%end%>
+      </div>
+    </div>
+  <%end%>
+</div>

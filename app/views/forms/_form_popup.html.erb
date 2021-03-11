@@ -1,0 +1,27 @@
+
+<%= form_with(model: FormsResponse.new, url: send_form_path) do |f|%><div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Send Form</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= f.hidden_field :form_id, value: '', class: 'formm_id' %>
+        <%= f.label 'Supervisor'%>
+        <%= f.select :supervisor_id, options_for_select(User.where(user_type: "Supervisor").pluck(:id,:name).map{ |id,name| [name, id]}),{include_blank: 'Select'},{class: 'form-control', required: true}%>
+        <br/>
+        <%= f.label 'Employee'%>
+        <%= f.select :employee_id, options_for_select(User.where(user_type: "Employee").pluck(:id,:name).map{ |id,name| [name, id]}),{include_blank: 'Select'},{class: 'form-control', required: true}%>
+        <br/>
+        <%= f.label 'External Reviewer'%>
+        <%= f.select :external_reviewer_id, options_for_select(User.where(user_type: "External Reviewer").pluck(:id,:name).map{ |id,name| [name, id]}),{include_blank: 'Select'},{class: 'form-control', required: true}%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<%end%>
